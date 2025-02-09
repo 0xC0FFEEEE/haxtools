@@ -47,9 +47,9 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
         wget \
         whois \
         zsh \
-    && pip3 install --upgrade --no-cache-dir pip \
-    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list \
+    && curl -sSL -O https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && rm packages-microsoft-prod.deb \
     && update-ca-certificates \
     && rm -rf /usr/local/share/ca-certificates/*.crt \
     && apt-get -y autoremove --purge \
