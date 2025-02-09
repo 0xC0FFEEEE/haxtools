@@ -78,11 +78,15 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
         pdfcrack \
         pngcheck \
         powershell-empire \
+        pwncat \
+        python3-impacket \
+        python3-pwntools \
         radare2 \
         responder \
         smbmap \
         sqlmap \
         sslscan \
+        stegcracker \
         steghide \
         stegsnow \
         wafw00f \
@@ -107,42 +111,33 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
     && rm -rf /var/lib/gems/*/doc \
     && rm -rf /usr/share/icons/Adwaita/*
 
-RUN export DEBIAN_FRONTEND="noninteractive" \
-    && apt-get -yqq update \
-    && apt-get --no-install-recommends -yqq install \
-        build-essential \
-        python3-dev \
-    && git clone --depth 1 https://github.com/sc0tfree/mentalist.git /tmp/mentalist \
-    && cd /tmp/mentalist \
-    && python3 setup.py install \
-    && rm -rf /tmp/mentalist \
-    && cd /tmp \
-    && pip3 install --upgrade --no-cache-dir aclpwn \
-    && pip3 install --upgrade --no-cache-dir aiodnsbrute \
-    && pip3 install --upgrade --no-cache-dir impacket \
-    && pip3 install --upgrade --no-cache-dir pwncat \
-    && pip3 install --upgrade --no-cache-dir pwntools \
-    && pip3 install --upgrade --no-cache-dir stegcracker \
-    && pip3 install --upgrade --no-cache-dir stego-lsb \
-    && apt-get -y remove \
-        build-essential \
-        python3-dev \
-    && apt-get -y autoremove --purge \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /root/.cache \
-    && rm -rf /var/cache/* \
-    && rm -rf /var/log/* \
-    && rm -rf /usr/share/doc-base/* \
-    && rm -rf /usr/share/groff/* \
-    && rm -rf /usr/share/info/* \
-    && rm -rf /usr/share/lintian/* \
-    && rm -rf /usr/share/linda/* \
-    && rm -rf /var/cache/man/* \
-    && find /usr/share/doc -depth -type f ! -name copyright -exec rm {} \; \
-    && find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en_GB' ! -name 'en_US' -exec rm -r {} \; \
-    && find /usr/share/i18n/locales -mindepth 1 -maxdepth 1 ! -name 'en_GB' ! -name 'en_US' -exec rm -r {} \; \
-    && rm -rf /var/lib/gems/*/doc
+# RUN export DEBIAN_FRONTEND="noninteractive" \
+#     && apt-get -yqq update \
+#     && apt-get --no-install-recommends -yqq install \
+#         build-essential \
+#         python3-dev \
+#     && pip3 install --upgrade --no-cache-dir aclpwn \
+#     && pip3 install --upgrade --no-cache-dir aiodnsbrute \
+#     && pip3 install --upgrade --no-cache-dir stego-lsb \
+#     && apt-get -y remove \
+#         build-essential \
+#         python3-dev \
+#     && apt-get -y autoremove --purge \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && rm -rf /root/.cache \
+#     && rm -rf /var/cache/* \
+#     && rm -rf /var/log/* \
+#     && rm -rf /usr/share/doc-base/* \
+#     && rm -rf /usr/share/groff/* \
+#     && rm -rf /usr/share/info/* \
+#     && rm -rf /usr/share/lintian/* \
+#     && rm -rf /usr/share/linda/* \
+#     && rm -rf /var/cache/man/* \
+#     && find /usr/share/doc -depth -type f ! -name copyright -exec rm {} \; \
+#     && find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en_GB' ! -name 'en_US' -exec rm -r {} \; \
+#     && find /usr/share/i18n/locales -mindepth 1 -maxdepth 1 ! -name 'en_GB' ! -name 'en_US' -exec rm -r {} \; \
+#     && rm -rf /var/lib/gems/*/doc
 
 RUN git clone --depth 1 https://gitlab.com/exploit-database/exploitdb /usr/share/exploitdb \
     && ln -sf /usr/share/exploitdb/searchsploit /usr/bin/searchsploit \
