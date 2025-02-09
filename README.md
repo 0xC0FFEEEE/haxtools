@@ -1,17 +1,17 @@
-# Haxtools [![Docker](https://github.com/breakfixrepeat/haxtools/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/breakfixrepeat/haxtools/actions/workflows/docker-ci.yml)
+# Haxtools [![Docker](https://github.com/0xC0FFEEEE/haxtools/actions/workflows/docker-ci.yml/badge.svg)](https://github.com/0xC0FFEEEE/haxtools/actions/workflows/docker-ci.yml)
 
 ***A highly customised CTF, bug bounty hunting & penetration testing environment based on the official kali-rolling docker image.***
 
 Haxtools provides a wrapper for the [haxtools docker image](https://hub.docker.com/repository/docker/infosux/haxtools/general) (and any other docker image for that matter) by sourcing itself within your shells rc file.
 
-Installation is straightforward and doesn't require any prior experience with docker (though this will help if you wish to further customise Haxtools or add your own custom commands).
+Installation is straightforward and doesn't require any prior experience with docker (though this will help if you wish to further customize Haxtools or add your own custom commands).
 
 # Get Started
 **1.** Install docker
 
 **2.** Clone this repository:
 ```
-git clone https://github.com/breakfixrepeat/haxtools ~/.haxtools
+git clone https://github.com/0xC0FFEEEE/haxtools ~/.haxtools
 ```
 
 **3.** Add the following to your shells RC file:
@@ -91,7 +91,3 @@ From time to time something breaks. Shit happens, I'll do my best to keep the wh
 # Contributions & Requests
 
 Requests for tools and contributions to improve haxtools and the associated docker container are welcome.
-
-If you enjoy using haxtools, consider buying me a coffee. Mine's a black, one sugar please.
-
-<a href="https://www.buymeacoffee.com/breakfixrepeat" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
