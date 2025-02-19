@@ -22,13 +22,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 2048
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
+      # - name: Maximize build space
+      #   uses: easimon/maximize-build-space@master
+      #   with:
+      #     root-reserve-mb: 2048
+      #     remove-dotnet: 'true'
+      #     remove-android: 'true'
+      #     remove-haskell: 'true'
       
       - name: Disk free
         run: |
@@ -39,9 +39,19 @@ jobs:
 
       - name: Set up QEMU        
         uses: docker/setup-qemu-action@v3
+
+      - name: Disk free
+        run: |
+          echo "Free disk space:"
+          df -h
       
       - name: Set up Docker Buildx        
         uses: docker/setup-buildx-action@v3
+
+      - name: Disk free
+        run: |
+          echo "Free disk space:"
+          df -h
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin docker.io
@@ -56,6 +66,11 @@ jobs:
           export VCS_REF=$(git rev-parse --short HEAD)
           docker buildx build --build-arg MAINTAINER --build-arg BUILD_DATE --build-arg BUILD_TIME -t ${{ secrets.DOCKER_USERNAME }}/haxtools:base --push --platform=linux/arm64,linux/amd64 .
           docker system prune -af
+      
+      - name: Disk free
+        run: |
+          echo "Free disk space:"
+          df -h
 
       - name: Build cli
         working-directory: ./docker/cli
@@ -68,6 +83,11 @@ jobs:
           docker buildx build --build-arg MAINTAINER --build-arg BUILD_DATE --build-arg BUILD_TIME -t ${{ secrets.DOCKER_USERNAME }}/haxtools:cli --push --platform=linux/arm64,linux/amd64 .
           docker system prune -af
 
+      - name: Disk free
+        run: |
+          echo "Free disk space:"
+          df -h
+
       - name: Build full
         working-directory: ./docker/gui
         run: |
@@ -78,3 +98,8 @@ jobs:
           export VCS_REF=$(git rev-parse --short HEAD)
           docker buildx build --build-arg MAINTAINER --build-arg BUILD_DATE --build-arg BUILD_TIME -t ${{ secrets.DOCKER_USERNAME }}/haxtools:gui --push --platform=linux/arm64,linux/amd64 .
           docker system prune -af
+
+      - name: Disk free
+        run: |
+          echo "Free disk space:"
+          df -h
